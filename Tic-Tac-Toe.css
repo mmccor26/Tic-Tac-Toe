@@ -1,3 +1,14 @@
 td{
-    color: gray;
+    background-color: gray;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+}
+#board{
+    position: absolute;
+    top: 30%;
+    left: 45%;
+}
+#container{
+    font-family: Arial, Helvetica, sans-serif;
 }
