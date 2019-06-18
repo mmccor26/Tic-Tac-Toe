@@ -65,6 +65,15 @@ tableCells.forEach((cell) => {
         render();
     });
 });
+resetBtn = document.getElementById("Reset");
+resetBtn.addEventListener('click',ResetBoard);
+
+function ResetBoard(){
+    for(j = 0; j<9;j++){
+        (document.querySelector(`#cell${j + 1}`)).innerHTML = " ";
+    }
+
+}
 
 function checkWin(){
     //123
