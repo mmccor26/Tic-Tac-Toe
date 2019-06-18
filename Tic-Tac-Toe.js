@@ -1,10 +1,11 @@
 var playerTurn = 0;
 const GameBoard = () => {
     board = [
-        ["","",""],
-        ["","",""],
-        ["","",""]
+        "","","",
+        "","","",
+        "","",""
     ]
+    return board;
 
 };
 
@@ -19,31 +20,20 @@ const Player = (num) => {
 function render(){
 
     for(i = 0; i<=3;i++){
-        for(i = 0; i<=3;i++){
+        for(j = 0; j<=3;j++){
 
         }  
     }
 
 }
 function updateArray(){
-    cell1 = document.getElementById("cell1");
-    cell2 = document.getElementById("cell2");
-    cell3 = document.getElementById("cell3");
-    cell4 = document.getElementById("cell4");
-    cell5 = document.getElementById("cell5");
-    cell6 = document.getElementById("cell6");
-    cell7 = document.getElementById("cell7");
-    cell8 = document.getElementById("cell8");
-    cell9 = document.getElementById("cell9");
-    board[0][0] = cell1.innerHTML;
-    board[0][1] = cell1.innerHTML;
-    board[0][2] = cell1.innerHTML;
-    board[1][0] = cell1.innerHTML;
-    board[1][1] = cell1.innerHTML;
-    board[1][2] = cell1.innerHTML;
-    board[2][0] = cell1.innerHTML;
-    board[2][1] = cell1.innerHTML;
-    board[2][2] = cell1.innerHTML;
+    
+    for(j = 0; j<9;j++){
+        
+        board[j] = (document.querySelector(`#cell${j + 1}`)).innerHTML;
+
+    }  
+    console.log(board);
     
 }
 tableCells = document.querySelectorAll("td");
@@ -54,59 +44,64 @@ tableCells.forEach((cell) => {
             console.log("X")
             cell.innerHTML = "X";
             playerTurn = 1;
+          
         }
-        else if(playerTurn == 1 && cell.innerHTML == " "){
+        if(playerTurn == 1 && cell.innerHTML == " "){
             console.log("O");
             cell.innerHTML = "O";
             playerTurn = 0;
+            
         }
-        
         updateArray();
-        console.log(board);
-        
+        if(checkWin(board)){
+           if(playerTurn == 1){
+                console.log("Player 1 Wins");
+            }
+            else{
+                console.log("Player 2 Wins");
+            }
+        }
         
         render();
     });
 });
 
-function checkWin(array){
+function checkWin(){
     //123
-    if(array[0][0] == array[0][1]==array[0][2]){
-
+    if(board[0] == board[1] && board[1]==board[2] && board[0] != " "){
+        return true;
     }
     //456
-    if(array[1][0] == array[1][1]==array[1][2]){
-        
+    if(board[3] == board[4] && board[4]==board[5] && board[4] != " "){
+        return true;
     }
     //789
-    if(array[2][0] == array[2][1]==array[2][2]){
-        
+    if(board[6] == board[7]&& board[7]==board[8] && board[7] != " "){
+        return true;
     }
     //147
-    if(array[0][0] == array[1][0]==array[2][0]){
-        
+    if(board[0] == board[3]&& board[3]==board[6] && board[6] != " "){
+        return true;
     }
     //258
-    if(array[0][1] == array[1][1]==array[2][1]){
-        
+    if(board[1] == board[4]&& board[4] ==board[7] && board[7] != " "){
+        return true;
     }
     //369
-    if(array[0][2] == array[1][2]==array[2][2]){
-        
+    if(board[2] == board[5]&& board[5]==board[8] && board[5] != " "){
+        return true;
     }
     //diagonals
-    if(array[0][0] == array[1][1]==array[2][2]){
-        
+    if(board[0] == board[4]&& board[4]==board[8] && board[0] != " "){
+        return true;
     }
-    if(array[0][2] == array[1][1]==array[2][0]){
-        
+    if(board[2] == board[4]&& board[4]==board[6] && board[2] != " "){
+        return true;
     }
 
-
-    
-    
 }
 
 const player1 = Player(1);
 const player2 = Player(2);
+const gameBoard = GameBoard();
 
