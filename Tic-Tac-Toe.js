@@ -54,11 +54,12 @@ tableCells.forEach((cell) => {
         }
         updateArray();
         if(checkWin(board)){
+            display = document.getElementById("result"); 
            if(playerTurn == 1){
-                console.log("Player 1 Wins");
+                display.innerHTML = "Player 1 Wins";
             }
             else{
-                console.log("Player 2 Wins");
+                display.innerHTML = "Player 2 Wins";
             }
         }
         
@@ -72,6 +73,8 @@ function ResetBoard(){
     for(j = 0; j<9;j++){
         (document.querySelector(`#cell${j + 1}`)).innerHTML = " ";
     }
+    display = document.getElementById("result");
+    display.innerHTML = "";
 
 }
 
@@ -106,6 +109,12 @@ function checkWin(){
     }
     if(board[2] == board[4]&& board[4]==board[6] && board[2] != " "){
         return true;
+    }
+    if(board[0] != " " && board[1] != " " && board[2] != " " && board[3] != " " && board[4] != " " 
+    && board[5] != " " && board[6] != " " && board[7] != " " && board[8] != " "){
+        display = document.getElementById("result");
+        display.innerHTML = "Tie"
+        return false;
     }
 
 }
