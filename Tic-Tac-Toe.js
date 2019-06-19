@@ -1,4 +1,5 @@
 var playerTurn = 0;
+var win = 0;
 const GameBoard = () => {
     board = [
         "","","",
@@ -55,11 +56,13 @@ tableCells.forEach((cell) => {
         updateArray();
         if(checkWin(board)){
             display = document.getElementById("result"); 
-           if(playerTurn == 1){
+           if(playerTurn == 1 && win == 0){
                 display.innerHTML = "Player 1 Wins";
+                win = 1;
             }
-            else{
+            else if(playerTurn == 0 && win ==0){
                 display.innerHTML = "Player 2 Wins";
+                win =1;
             }
         }
         
